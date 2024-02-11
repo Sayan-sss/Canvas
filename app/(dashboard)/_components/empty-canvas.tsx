@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useOrganization } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,7 @@ import { useApiMutation } from "@/hooks/use-api-mutation";
 export const EmptyCanvas = () => {
   const { organization } = useOrganization();
   const { mutate, pending } = useApiMutation(api.board.create);
+  const router = useRouter();
 
   const onClick = () => {
     if (!organization) return;
@@ -20,6 +22,7 @@ export const EmptyCanvas = () => {
     })
       .then((id) => {
         toast.success("Canvas created successfully");
+        router.push(`/boards/${id}`);
       })
       .catch(() => {
         toast.error("Failed to create canvas");

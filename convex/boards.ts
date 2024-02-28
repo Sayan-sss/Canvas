@@ -34,7 +34,6 @@ export const get = query({
         isFavourite: true,
       }));
     }
-
     const title = args.search as string;
     let boards = [];
 

@@ -1,10 +1,10 @@
 import { createClient } from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
 
-const client = createClient({
-  publicApiKey:
-    "pk_dev_AtFbhU5tf-18g-_QoyCItG-ykjtd8QHAIPyawD7cwxLQ6Rk7_vWZy9Fnz12xBJpZ",
-  async resolveUsers({ userIds }) {
+const client = createClient(
+  {
+    authEndpoint: "/api/liveblocks-auth",
+    // async resolveUsers({ userIds }) {
     // Used only for Comments and Notifications. Return a list of user information
     // retrieved from `userIds`. This info is used in comments, mentions etc.
 
@@ -15,36 +15,37 @@ const client = createClient({
     //   avatar: userData.avatar.src,
     // }));
 
-    return [];
-  },
-  async resolveMentionSuggestions({ text }) {
-    // Used only for Comments. Return a list of userIds that match `text`.
-    // These userIds are used to create a mention list when typing in the
-    // composer.
-    //
-    // For example when you type "@jo", `text` will be `"jo"`, and
-    // you should to return an array with John and Joanna's userIds:
-    // ["john@example.com", "joanna@example.com"]
+    // return [];
+  }
+  // async resolveMentionSuggestions({ text }) {
+  // Used only for Comments. Return a list of userIds that match `text`.
+  // These userIds are used to create a mention list when typing in the
+  // composer.
+  //
+  // For example when you type "@jo", `text` will be `"jo"`, and
+  // you should to return an array with John and Joanna's userIds:
+  // ["john@example.com", "joanna@example.com"]
 
-    // const users = await getUsers({ search: text });
-    // return users.map((user) => user.id);
+  // const users = await getUsers({ search: text });
+  // return users.map((user) => user.id);
 
-    return [];
-  },
-  async resolveRoomsInfo({ roomIds }) {
-    // Used only for Comments and Notifications. Return a list of room information
-    // retrieved from `roomIds`.
+  // return [];
+  // },
+  // async resolveRoomsInfo({ roomIds }) {
+  // Used only for Comments and Notifications. Return a list of room information
+  // retrieved from `roomIds`.
 
-    // const roomsData = await __fetchRoomsFromDB__(roomIds);
-    //
-    // return roomsData.map((roomData) => ({
-    //   name: roomData.name,
-    //   url: roomData.url,
-    // }));
+  // const roomsData = await __fetchRoomsFromDB__(roomIds);
+  //
+  // return roomsData.map((roomData) => ({
+  //   name: roomData.name,
+  //   url: roomData.url,
+  // }));
 
-    return [];
-  },
-});
+  // return [];
+  // },
+  // }
+);
 
 // Presence represents the properties that exist on every user in the Room
 // and that will automatically be kept in sync. Accessible through the
@@ -67,8 +68,11 @@ type Storage = {
 // provided by your own custom auth back end (if used). Useful for data that
 // will not change during a session, like a user's name or avatar.
 type UserMeta = {
-  // id?: string,  // Accessible through `user.id`
-  // info?: Json,  // Accessible through `user.info`
+  id?: string;
+  info?: {
+    name?: string;
+    picture?: string;
+  };
 };
 
 // Optionally, the type of custom events broadcast and listened to in this

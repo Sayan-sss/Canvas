@@ -22,7 +22,7 @@ export const EmptyCanvas = () => {
     })
       .then((id) => {
         toast.success("Canvas created successfully");
-        router.push(`/boards/${id}`);
+        router.push(`/board/${id}`);
       })
       .catch(() => {
         toast.error("Failed to create canvas");

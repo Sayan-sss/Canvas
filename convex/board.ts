@@ -29,6 +29,8 @@ export const create = mutation({
 
     const randomImage = images[Math.floor(Math.random() * images.length)];
 
+    // console.log(randomImage, "TEST");
+
     const board = await ctx.db.insert("boards", {
       title: args.title,
       orgId: args.orgId,
@@ -36,10 +38,10 @@ export const create = mutation({
       authorName: identity.name!,
       imageUrl: randomImage,
     });
+
     return board;
   },
 });
-
 export const remove = mutation({
   args: { id: v.id("boards") },
   handler: async (ctx, args) => {
@@ -171,6 +173,7 @@ export const get = query({
   args: { id: v.id("boards") },
   handler: async (ctx, args) => {
     const board = ctx.db.get(args.id);
+
     return board;
   },
 });

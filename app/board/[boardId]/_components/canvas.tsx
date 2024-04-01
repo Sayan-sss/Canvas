@@ -31,7 +31,7 @@ import {
   Side,
   XYWH,
 } from "@/types/canvas";
-// import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
+
 import { useDeleteLayers } from "@/hooks/use-delete-layers";
 
 import { Info } from "./info";
@@ -42,6 +42,7 @@ import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
 import { SelectionTools } from "./selection-tools";
 import { CursorsPresence } from "./cursors-presence";
+import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
 
 const MAX_LAYERS = 100;
 
@@ -63,7 +64,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
     b: 0,
   });
 
-  // useDisableScrollBounce();
+  useDisableScrollBounce();
   const history = useHistory();
   const canUndo = useCanUndo();
   const canRedo = useCanRedo();

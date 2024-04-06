@@ -44,7 +44,7 @@ import { SelectionTools } from "./selection-tools";
 import { CursorsPresence } from "./cursors-presence";
 import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
 
-const MAX_LAYERS = 100;
+const MAX_LAYERS = 1000;
 
 interface CanvasProps {
   boardId: string;
